@@ -4,7 +4,7 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: dockerfile.dev
+      dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
       - '1337:80'
@@ -41,4 +41,7 @@ services:
     volumes:
       - /app/node_modules
       - ./worker:/app
+    environment: 
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
 

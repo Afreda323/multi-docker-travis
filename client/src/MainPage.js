@@ -9,14 +9,14 @@ const MainPage = () => {
   const fetchValues = async () => {
     await axios
       .get('/api/values/current')
-      .then(setValues)
+      .then((res) => setValues(res.data ? res.data : {}))
       .catch(console.log)
   }
 
   const fetchIndexes = async () => {
     await axios
       .get('/api/values/all')
-      .then(setSeenIndexes)
+      .then((res) => setSeenIndexes(res.data))
       .catch(console.log)
   }
 
