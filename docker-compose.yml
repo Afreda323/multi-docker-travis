@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: dockerfile.dev
+      context: ./nginx
+    ports:
+      - '1337:80'
   postgres:
     image: 'postgres:latest'
   redis:
