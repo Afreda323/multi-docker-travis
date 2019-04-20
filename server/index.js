@@ -23,7 +23,7 @@ pgClient.on('error', () => {
 })
 
 pgClient
-  .query(`CREATE TABLE IF NOT EXIST values(number INT)`)
+  .query(`CREATE TABLE IF NOT EXISTS values(number INT)`)
   .catch(console.log)
 
 // Redis setup
@@ -66,5 +66,5 @@ app.post('/values', async (req, res) => {
 })
 
 app.listen(5000, () => {
-  console.log('Up on 5000')
+  console.log('Up on 5000!')
 })
