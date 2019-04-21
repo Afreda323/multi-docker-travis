@@ -18,7 +18,7 @@ after_success:
   - docker push afreda323/multi-worker
   - docker push afreda323/multi-nginx
 deploy:
-  provide: elasticbeanstalk
+  provider: elasticbeanstalk
   region: us-east-1
   app: multi-docker
   env: MultiDocker-env
