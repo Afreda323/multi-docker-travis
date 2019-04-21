@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t afreda323/react-test -f ./client/Dockerfile.dev ./client
+script:
+  - docker run afreda323/react-test npm test -- --coverage
+after_success:
+  - docker build -t afreda323/multi-client ./client
+  - docker build -t afreda323/multi-api ./api
+  - docker build -t afreda323/multi-worker ./worker
+  - docker build -t afreda323/multi-nginx ./nginx
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push afreda323/multi-client
+  - docker push afreda323/multi-api
+  - docker push afreda323/multi-worker
+  - docker push afreda323/multi-nginx
